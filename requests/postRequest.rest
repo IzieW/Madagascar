@@ -1,0 +1,5 @@
+POST http://localhost:3001/scores
+content-type: application/json
+
+{"name": "KOOKS",
+"score": 5}
