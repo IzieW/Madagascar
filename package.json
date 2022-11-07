@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build:ui": "rm -rf build && cd ../front-end/appy && npm run build && cp -r build ../../back-end",
+    "deploy":"git add . && git commit -m 'committing app `date`' && git push heroku master",
+    "deploy:full": "npm run build:ui && npm run deploy",
+    "logs:prod": "heroku logs --tail"
   },
   "author": "Izie Wood",
   "license": "ISC",
