@@ -7241,13 +7241,14 @@ const maxId = () => {
 
     return maxId + 1
 }
+/*
 app.post("/scores", (request, response) => {
     const newScore = request.body
     newScore.id = maxId()
 
     db.scores = db.scores.concat(newScore)
     response.json(db.scores)
-})
+})*/
 
 
 const PORT = process.env.PORT || 3001
