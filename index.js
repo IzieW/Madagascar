@@ -1,6 +1,8 @@
+require("dotenv").config()
 const express = require("express")
 const app = express()
 const cors = require("cors")
+const {Score, Script} = require("./models/db")
 
 app.use(express.json())
 
@@ -7227,11 +7229,15 @@ let db = {
   }}
 
 app.get('/scores', (request, response) => {
-    response.json(db.scores)
+    Score.find({}).then(score => {
+       response.json(score)
+    })
 })
 
 app.get('/script', (request, response) => {
-    response.json(db.script)
+    Script.find({}).then(script => {
+       response.json(script)
+    })
 })
 
 const maxId = () => {
