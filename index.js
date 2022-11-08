@@ -7240,20 +7240,21 @@ app.get('/script', (request, response) => {
     })
 })
 
-const maxId = () => {
-    const maxId = db.scores.length > 0
-    ? Math.max(...db.scores.map(score => score.id))
-    : 0
-
-    return maxId + 1
-}
-
 app.post("/scores", (request, response) => {
-    const newScore = request.body
-    newScore.id = maxId()
+    const body = request.body
+    
+    if (body.name === undefined) {
+       return response.status(400).json({error:"content missing"})
+    }
 
-    db.scores = db.scores.concat(newScore)
-    response.json(db.scores)
+    const score = new Score({
+       name: body.name, 
+       score: body.score
+    })
+
+    score.save().then(savedNote => {
+       response.json(savedNote)
+    })
 })
 
 
